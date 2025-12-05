@@ -16,22 +16,21 @@ GRANT CREATE ON DATABASE product_management_db TO product_manager_user;
 
 -- Create Product table
 CREATE TABLE IF NOT EXISTS product (
-                                       id SERIAL PRIMARY KEY,
-                                       name VARCHAR(255) NOT NULL,
-    price DECIMAL(10, 2) NOT NULL CHECK (price >= 0),
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    price NUMBER NOT NULL CHECK (price >= 0),
     creation_datetime TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     );
 
 -- Create Product_category table
 CREATE TABLE IF NOT EXISTS product_category (
-                                                id SERIAL PRIMARY KEY,
-                                                name VARCHAR(255) NOT NULL,
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
     product_id INT NOT NULL,
-    CONSTRAINT fk_product
-    FOREIGN KEY (product_id)
-    REFERENCES product(id)
-    ON DELETE CASCADE
+    CONSTRAINT fk_product FOREIGN KEY (product_id) REFERENCES product(id) ON DELETE CASCADE
     );
+
+-- finished from here --------------------------------------
 
 -- 6. Grant all privileges on tables to the user
 GRANT ALL PRIVILEGES ON DATABASE product_management_db TO product_manager_user;
