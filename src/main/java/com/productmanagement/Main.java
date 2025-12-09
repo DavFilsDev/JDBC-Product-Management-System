@@ -14,28 +14,23 @@ public class Main {
 
         DataRetriever retriever = new DataRetriever();
 
-        // Test a) getAllCategories()
         System.out.println("a) Testing getAllCategories()");
         System.out.println("------------------------------");
         testGetAllCategories(retriever);
 
-        // Test b) getProductList(page, size)
         System.out.println("\n\nb) Testing getProductList(page, size)");
         System.out.println("---------------------------------------");
         testGetProductList(retriever);
 
-        // Test c) getProductsByCriteria(productName, categoryName, creationMin, creationMax)
         System.out.println("\n\nc) Testing getProductsByCriteria(productName, categoryName, creationMin, creationMax)");
         System.out.println("--------------------------------------------------------------------------------------");
         testGetProductsByCriteriaWithoutPagination(retriever);
 
-        // Test d) getProductsByCriteria(productName, categoryName, creationMin, creationMax, page, size)
         System.out.println("\n\nd) Testing getProductsByCriteria(productName, categoryName, creationMin, creationMax, page, size)");
         System.out.println("--------------------------------------------------------------------------------------------------");
         testGetProductsByCriteriaWithPagination(retriever);
     }
 
-    // ============ TEST a) getAllCategories() ============
     private static void testGetAllCategories(DataRetriever retriever) {
         List<Category> categories = retriever.getAllCategories();
         System.out.println("Number of categories: " + categories.size());
@@ -44,14 +39,12 @@ public class Main {
         }
     }
 
-    // ============ TEST b) getProductList(page, size) ============
     private static void testGetProductList(DataRetriever retriever) {
-        // Test cases from the table
         int[][] testCases = {
-                {1, 10},  // page=1, size=10
-                {1, 5},   // page=1, size=5
-                {1, 3},   // page=1, size=3
-                {2, 2}    // page=2, size=2
+                {1, 10},
+                {1, 5},
+                {1, 3},
+                {2, 2}
         };
 
         for (int i = 0; i < testCases.length; i++) {
@@ -71,7 +64,6 @@ public class Main {
         }
     }
 
-    // ============ TEST c) getProductsByCriteria WITHOUT pagination ============
     private static void testGetProductsByCriteriaWithoutPagination(DataRetriever retriever) {
         // Create Instant for date tests
         Instant feb1 = LocalDateTime.of(2024, 2, 1, 0, 0, 0)
@@ -83,9 +75,7 @@ public class Main {
         Instant dec1 = LocalDateTime.of(2024, 12, 1, 0, 0, 0)
                 .atZone(ZoneId.systemDefault()).toInstant();
 
-        // Test cases from the table
         Object[][] testCases = {
-                // productName, categoryName, creationMin, creationMax
                 {"Dell", null, null, null},
                 {null, "Info", null, null},
                 {"iPhone", "mobile", null, null},
@@ -122,11 +112,8 @@ public class Main {
         }
     }
 
-    // ============ TEST d) getProductsByCriteria WITH pagination ============
     private static void testGetProductsByCriteriaWithPagination(DataRetriever retriever) {
-        // Test cases from the table
         Object[][] testCases = {
-                // productName, categoryName, creationMin, creationMax, page, size
                 {null, null, null, null, 1, 10},
                 {"Del", null, null, null, 1, 5},
                 {null, "Informatique", null, null, 1, 10}
@@ -162,7 +149,6 @@ public class Main {
         }
     }
 
-    // ============ HELPER METHOD ============
     private static String formatInstant(Instant instant) {
         if (instant == null) {
             return "null";

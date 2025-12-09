@@ -24,7 +24,6 @@ public class DBConnection {
             String user = props.getProperty("db.username");
             String password = props.getProperty("db.password");
 
-            // Load driver
             Class.forName("org.postgresql.Driver");
 
             return DriverManager.getConnection(url, user, password);

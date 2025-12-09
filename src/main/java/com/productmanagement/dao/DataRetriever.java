@@ -40,10 +40,8 @@ public class DataRetriever {
     public List<Product> getProductList(int page, int size) {
         List<Product> products = new ArrayList<>();
 
-        // Calculate offset
         int offset = (page - 1) * size;
 
-        // SQL for your schema (products with multiple categories)
         String sql = "SELECT " +
                 "    p.id as product_id, " +
                 "    p.name as product_name, " +
@@ -165,7 +163,6 @@ public class DataRetriever {
         try (Connection conn = dbConnection.getDBConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-            // Set all parameters
             for (int i = 0; i < parameters.size(); i++) {
                 pstmt.setObject(i + 1, parameters.get(i));
             }
