@@ -65,7 +65,6 @@ public class Main {
     }
 
     private static void testGetProductsByCriteriaWithoutPagination(DataRetriever retriever) {
-        // Create Instant for date tests
         Instant feb1 = LocalDateTime.of(2024, 2, 1, 0, 0, 0)
                 .atZone(ZoneId.systemDefault()).toInstant();
         Instant mar1 = LocalDateTime.of(2024, 3, 1, 0, 0, 0)

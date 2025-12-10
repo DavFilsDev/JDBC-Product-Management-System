@@ -67,19 +67,15 @@ public class DataRetriever {
                     product.setName(rs.getString("product_name"));
                     product.setPrice(rs.getDouble("price"));
 
-                    // Handle timestamp
                     Timestamp timestamp = rs.getTimestamp("creation_datetime");
                     if (timestamp != null) {
                         product.setCreationDateTime(timestamp.toInstant());
                     }
 
-                    // Handle categories (as comma-separated string)
                     String categoriesStr = rs.getString("categories");
                     if (categoriesStr != null) {
-                        // Create a Category object with all categories concatenated
-                        // Or if you want to store them separately, you'll need a List<Category>
                         Category category = new Category();
-                        category.setName(categoriesStr); // All categories as one string
+                        category.setName(categoriesStr);
                         product.setCategory(category);
                     }
 
